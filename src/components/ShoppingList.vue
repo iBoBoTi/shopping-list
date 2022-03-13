@@ -35,6 +35,9 @@
         this.state = state
         this.newItem = ""
       },
+      purchase(item){
+        item.purchase = !item.purchase
+      }
     }
   }
 </script>
@@ -52,7 +55,7 @@
     <button class="btn btn-primary" @click="saveItem" :disabled="newItem.length === 0">Save Item</button>
   </div>
   <ul>
-    <li v-for="item in items">{{ item.label }}</li>
+    <li v-for="item in items" :class="{strikeout : item.purchase}" @click="purchase(item)">{{ item.label }}</li>
   </ul>
   <p v-if="items.length === 0">You are done, Now you can go home with what you've bought</p>
 </template>
